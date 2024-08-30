@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>럭셔리 리조트 & 스파</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #d4af37;
+        }
+        
+        .hero {
+            height: 100vh;
+            background-image: url('https://via.placeholder.com/1920x1080.png?text=Luxury+Resort+View');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-content {
+            text-align: center;
+            color: #ffffff;
+            background-color: rgba(10, 10, 10, 0.6);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        .feature {
+            flex: 1;
+            margin: 0 1rem;
+            text-align: center;
+        }
+        .feature img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+   {{>layouts/header}}
+    <div class="hero">
+        <div class="hero-content">
+            <h1>럭셔리 리조트 & 스파</h1>
+            <p>최고의 휴식과 힐링을 경험하세요</p>
+        </div>
+    </div>
+
+    <main>
+        <h2>리조트 특징</h2>
+        <div class="features">
+            <div class="feature">
+                <img src="https://via.placeholder.com/400x200.png?text=Luxury+Room" alt="고급 객실">
+                <h3>최고급 객실</h3>
+                <p>편안함과 럭셔리함이 공존하는 객실</p>
+            </div>
+            <div class="feature">
+                <img src="https://via.placeholder.com/400x200.png?text=Spa" alt="스파">
+                <h3>힐링 스파</h3>
+                <p>몸과 마음의 휴식을 위한 프리미엄 스파</p>
+            </div>
+            <div class="feature">
+                <img src="https://via.placeholder.com/400x200.png?text=Gourmet+Dining" alt="고급 다이닝">
+                <h3>미식 다이닝</h3>
+                <p>최고의 셰프가 선보이는 특별한 요리</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
