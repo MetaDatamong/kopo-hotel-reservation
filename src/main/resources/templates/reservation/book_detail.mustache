@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약 내역 - 럭셔리 리조트 & 스파</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #d4af37;
+        }
+        .container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 2rem;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .reservation-list {
+            text-align: left;
+        }
+        .reservation-item {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: #333;
+            border-radius: 10px;
+        }
+        .reservation-item label {
+            font-size: 1.2rem;
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .reservation-item p {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            background-color: #444;
+            color: #d4af37;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+        .reservation-item button {
+            padding: 0.5rem 1.5rem; /* 버튼의 크기를 조정 */
+            font-size: 1rem;
+            background-color: #d4af37; /* 버튼 배경색을 페이지 테마와 일치시킴 */
+            color: #0a0a0a; /* 버튼 텍스트 색상 */
+            border: none;
+            border-radius: 5px; /* 버튼 모서리를 부드럽게 */
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* 호버 효과를 부드럽게 */
+        }
+        .reservation-item button:hover {
+            background-color: #b88a2c; /* 버튼 호버 시 약간 어두운 색상으로 변경 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>예약 내역</h1>
+
+        <div class="reservation-list">
+            {{#reservation}}
+            <div class="reservation-item">
+                <label>예약 번호:</label>
+                <p>{{reservationId}}</p>
+
+                <label>예약 날짜:</label>
+                <p>{{reservationDate}}</p>
+
+                <label>체크인 날짜:</label>
+                <p>{{checkInDate}}</p>
+
+                <label>체크아웃 날짜:</label>
+                <p>{{checkOutDate}}</p>
+
+                {{#roomItem}} <!-- roomItem이 null이 아닌 경우에만 아래 내용을 렌더링 -->
+                <label>객실 등급:</label>
+                <p>{{roomItem.grade}}</p>
+
+                <label>객실 번호:</label>
+                <p>{{roomItem.roomNum}}</p>
+                {{/roomItem}} <!-- 주석: 이 블록으로 roomItem이 null일 경우 오류 방지 -->
+
+                <label>예약자 정보:</label>
+                <p>{{userItem.username}}</p>
+                <p>{{userItem.name}}</p>
+
+                <label>요청 사항:</label>
+                <p>{{request}}</p>
+                
+                <label>예약 상태:</label>
+                <p>{{stateMessage}}</p>
+                
+                <!-- 예약 취소 버튼 -->
+                <form action="/requestCancell" method="POST">
+                    <input type="hidden" name="reservationId" value="{{reservationId}}">
+                    <button type="submit">예약 취소 요청</button>
+                </form>
+            </div>
+            {{/reservation}}
+        </div>
+    </div>
+</body>
+</html>

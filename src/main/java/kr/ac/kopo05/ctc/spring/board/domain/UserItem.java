@@ -12,7 +12,7 @@ public class UserItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column
-	private Long user_id;
+	private Long userId;
 	
 	@Column
 	private String name;
@@ -32,20 +32,28 @@ public class UserItem {
 	public boolean isAdmin() {
 		return this.type.equals("ROLE_ADMIN");
 	}
-	
-	public Long getUser_id() {
-		return user_id;
+
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
-	public String getUserName() {
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getUsername() {
 		return username;
 	}
 
-	public void setUserName(String username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 
@@ -73,21 +81,12 @@ public class UserItem {
 		this.phoneNum = phoneNum;
 	}
 
-	public Long getId() {
-		return user_id;
+	@Override
+	public String toString() {
+		return "UserItem [userId=" + userId + ", name=" + name + ", username=" + username + ", password=" + password
+				+ ", type=" + type + ", phoneNum=" + phoneNum + "]";
 	}
 	
-	public void setId(Long user_id) {
-		this.user_id = user_id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 	
 	
 }

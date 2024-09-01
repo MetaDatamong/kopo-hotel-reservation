@@ -27,4 +27,51 @@ public class RoomItem {
 	@Column
 	private boolean roomAvailable;
 	
+	
+//	@ManyToOne(optional=false, fetch=FetchType.LAZY)
+//	@JoinColumn(name="reservation_id")
+//	@JsonBackReference
+//	private Reservation reservation;
+//	
+	public Long getRoomId() {
+		return roomId;
+	}
+	public void setRoomId(Long roomId) {
+		this.roomId = roomId;
+	}
+	public int getPricePerNight() {
+		return pricePerNight;
+	}
+	public void setPricePerNight(int pricePerNight) {
+		this.pricePerNight = pricePerNight;
+	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	public int getRoomNum() {
+		return roomNum;
+	}
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
+	}
+	public boolean isRoomAvailable() {
+		return roomAvailable;
+	}
+	public void setRoomAvailable(boolean roomAvailable) {
+		this.roomAvailable = roomAvailable;
+	}
+	
+	@Override
+	public String toString() {
+		return "RoomItem{" +
+				"roomId=" + roomId +
+				", pricePerNight=" + pricePerNight +
+				", grade='" + grade + '\'' +
+				", roomNum=" + roomNum +
+				", roomAvailable=" + roomAvailable +
+				'}';
+	}
 }

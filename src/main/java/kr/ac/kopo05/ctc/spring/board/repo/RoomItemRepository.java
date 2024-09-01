@@ -4,8 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
-import kr.ac.kopo05.ctc.spring.board.domain.BoardItem;
+import kr.ac.kopo05.ctc.spring.board.domain.RoomItem;
+
 @Repository
-public interface RoomItem extends JpaRepository<BoardItem, Long>, JpaSpecificationExecutor<BoardItem>{
+public interface RoomItemRepository extends JpaRepository<RoomItem, Long>, JpaSpecificationExecutor<RoomItem>{
 
 }

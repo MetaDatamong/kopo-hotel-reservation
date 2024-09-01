@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>호텔 예약 - 럭셔리 리조트 & 스파</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #d4af37;
+        }
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 2rem;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            text-align: left;
+            width: 100%;
+        }
+        select, input[type="date"] {
+            width: 100%;
+            max-width: 400px;
+            padding: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            border: none;
+            background-color: #333;
+            color: #d4af37;
+            font-size: 1rem;
+        }
+        button {
+            padding: 0.7rem 2rem;
+            font-size: 1.2rem;
+            background-color: #d4af37;
+            color: #0a0a0a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #b88a2c;
+        }
+        .result {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+        }
+        .result p {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>호텔 예약 조회</h1>
+
+        <form action="/checkAvailability" method="POST">
+            <label for="roomType">룸 종류</label>
+            <select name="roomType" id="roomType">
+                <option value="1">Standard</option>
+                <option value="2">Deluxe</option>
+                <option value="3">Executive</option>
+            </select>
+
+            <label for="checkInDate">입실일</label>
+            <input type="date" name="checkInDate" id="checkInDate">
+
+            <label for="checkOutDate">퇴실일</label>
+            <input type="date" name="checkOutDate" id="checkOutDate">
+
+            <button type="submit">조회하기</button>
+        </form>
+
+    </div>
+</body>
+</html>

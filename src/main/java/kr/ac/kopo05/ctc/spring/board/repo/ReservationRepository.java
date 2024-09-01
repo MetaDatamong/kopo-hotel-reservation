@@ -5,8 +5,10 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo05.ctc.spring.board.domain.BoardItem;
+import kr.ac.kopo05.ctc.spring.board.domain.Reservation;
 
 @Repository
-public interface Reservation extends JpaRepository<BoardItem, Long>, JpaSpecificationExecutor<BoardItem>{
+public interface ReservationRepository extends JpaRepository<Reservation, Long>, JpaSpecificationExecutor<Reservation>{
 
+	
 }
