@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        .signup-container {
+            background-color: rgba(10, 10, 10, 0.6);
+            padding: 2rem;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #d4af37;
+        }
+        
+        input[type="text"], input[type="password"], input[type="tel"] {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #d4af37;
+            background-color: #0a0a0a;
+            color: #d4af37;
+        }
+        
+        input[type="submit"] {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: none;
+            background-color: #d4af37;
+            color: #0a0a0a;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #b8860b;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>회원가입</h2>
+        <form action="/join" method="POST">
+            <div class="input-group">
+                <label for="name">이름</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="input-group">
+                <label for="username">사용자 이름</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-group">
+                <label for="passwordCheck">비밀번호 확인</label>
+                <input type="password" id="passwordCheck" name="passwordCheck" required>
+            </div>
+            <div class="input-group">
+                <label for="phoneNum">전화번호</label>
+                <input type="tel" id="phoneNum" name="phoneNum" required>
+            </div>
+            <input type="submit" value="회원가입">
+        </form>
+    </div>
+</body>
+</html>

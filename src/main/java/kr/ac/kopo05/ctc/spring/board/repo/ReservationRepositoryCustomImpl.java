@@ -41,5 +41,13 @@ public class ReservationRepositoryCustomImpl implements ReservationRepositoryCus
 		            .where(userItem.userId.eq(inputId))
 		            .fetch();
 	}
+	@Override
+	public List<Reservation> getAll() {
+		return jpaQueryFactory
+				.selectFrom(reservation)
+		        .join(reservation.roomItem, roomItem).fetchJoin()
+		        .join(reservation.userItem, userItem).fetchJoin()
+		        .fetch();
+	}
 	
 }

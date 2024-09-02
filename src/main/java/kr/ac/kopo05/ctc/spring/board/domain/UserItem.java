@@ -29,6 +29,16 @@ public class UserItem {
 	@Column
 	private String phoneNum;
 	
+	public UserItem(String username, String password, String name, String phoneNum, String type) {
+		this.username = username;
+		this.password = password;
+		this.name = name;
+		this.phoneNum = phoneNum;
+		this.type = type;
+	}
+	
+	public UserItem() {}
+
 	public boolean isAdmin() {
 		return this.type.equals("ROLE_ADMIN");
 	}

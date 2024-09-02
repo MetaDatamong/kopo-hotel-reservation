@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약 내역 - 럭셔리 리조트 & 스파</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #d4af37;
+        }
+        .container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 2rem;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .reservation-list {
+            text-align: left;
+        }
+        .reservation-item {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: #333;
+            border-radius: 10px;
+        }
+        .reservation-item label {
+            font-size: 1.2rem;
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .reservation-item p {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            background-color: #444;
+            color: #d4af37;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+        .reservation-item .button-group {
+            display: flex; /* 버튼을 수평 배치 */
+            justify-content: space-between; /* 버튼 사이의 간격을 자동으로 맞춤 */
+            gap: 10px; /* 버튼 사이의 간격을 10px로 설정 */
+            margin-top: 1rem; /* 버튼 그룹 상단에 약간의 여백 추가 */
+        }
+        .reservation-item button {
+            flex: 1; /* 버튼이 동일한 크기로 확장되도록 함 */
+            padding: 0.5rem 1.5rem; /* 버튼의 크기를 조정 */
+            font-size: 1rem;
+            background-color: #d4af37; /* 버튼 배경색을 페이지 테마와 일치시킴 */
+            color: #0a0a0a; /* 버튼 텍스트 색상 */
+            border: none;
+            border-radius: 5px; /* 버튼 모서리를 부드럽게 */
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* 호버 효과를 부드럽게 */
+        }
+        .reservation-item button:hover {
+            background-color: #b88a2c; /* 버튼 호버 시 약간 어두운 색상으로 변경 */
+        }
+        
+        /* Message styles */
+        .alert {
+            color: #ffffff; /* Font color for the alert message */
+            background-color: #dc3545; /* Background color for the alert */
+            border-color: #dc3545;
+            padding: 15px;
+            margin: 100px auto 20px; /* Center the alert and add top margin */
+            border-radius: 5px;
+            max-width: 600px; /* Maximum width of the alert */
+            height: 50px; /* Set a fixed height for the alert */
+            display: flex; /* Use flexbox for centering content */
+            align-items: center; /* Vertically center the content */
+            justify-content: center; /* Horizontally center the content */
+            position: relative;
+            text-align: center; /* Center the text */
+        }
+        .alert svg {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+{{#message}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+    <use xlink:href="#exclamation-triangle-fill"/>
+  </svg>
+  <div>
+    {{message}}
+  </div>
+</div>
+{{/message}}
+
+    <div class="container">
+        <h1>예약 내역</h1>
+
+        <div class="reservation-list">
+            {{#reservation}}
+            <div class="reservation-item">
+                <label>예약 번호:</label>
+                <p>{{reservationId}}</p>
+
+                <label>예약 날짜:</label>
+                <p>{{reservationDate}}</p>
+
+                <label>체크인 날짜:</label>
+                <p>{{checkInDate}}</p>
+
+                <label>체크아웃 날짜:</label>
+                <p>{{checkOutDate}}</p>
+
+                {{#roomItem}} <!-- roomItem이 null이 아닌 경우에만 아래 내용을 렌더링 -->
+                <label>객실 등급:</label>
+                <p>{{roomItem.grade}}</p>
+
+                <label>객실 번호:</label>
+                <p>{{roomItem.roomNum}}</p>
+                {{/roomItem}} <!-- 주석: 이 블록으로 roomItem이 null일 경우 오류 방지 -->
+
+                <label>예약자 정보:</label>
+                <p>{{userItem.username}}</p>
+                <p>{{userItem.name}}</p>
+
+                <label>요청 사항:</label>
+                <p>{{request}}</p>
+                
+                <label>예약 상태:</label>
+                <p>{{stateMessage}}</p>
+                
+                <!-- 버튼 그룹 -->
+                <div class="button-group">
+                    <form action="/confirmReservation" method="POST">
+                        <input type="hidden" name="reservationId" value="{{reservationId}}">
+                        <button type="submit">예약 확정 하기</button>
+                    </form>
+                    
+                    <form action="/cancellReservation" method="POST">
+                        <input type="hidden" name="reservationId" value="{{reservationId}}">
+                        <button type="submit">예약 취소 하기</button>
+                    </form>
+                </div>
+            </div>
+            {{/reservation}}
+        </div>
+    </div>
+</body>
+</html>

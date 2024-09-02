@@ -55,10 +55,125 @@
             border-radius: 10px;
             margin-bottom: 1rem;
         }
+        
+        /* Message styles */
+        .alert {
+            color: #ffffff; /* Font color for the alert message */
+            background-color: #dc3545; /* Background color for the alert */
+            border-color: #dc3545;
+            padding: 15px;
+            margin: 100px auto 20px; /* Center the alert and add top margin */
+            border-radius: 5px;
+            max-width: 600px; /* Maximum width of the alert */
+            height: 50px; /* Set a fixed height for the alert */
+            display: flex; /* Use flexbox for centering content */
+            align-items: center; /* Vertically center the content */
+            justify-content: center; /* Horizontally center the content */
+            position: relative;
+            text-align: center; /* Center the text */
+        }
+        .alert svg {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        
     </style>
 </head>
 <body>
-   {{>layouts/header}}
+   <style>
+    nav {
+            background-color: rgba(10, 10, 10, 0.8);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 1rem;
+            position: relative;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #d4af37;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ffffff;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(10, 10, 10, 0.9);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+        nav ul li:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            color: #d4af37;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-content a:hover {
+            background-color: #d4af37;
+            color: #0a0a0a;
+        }
+</style>
+
+<nav>
+    <ul>
+        <li>
+            <a href="#">리조트 소개</a>
+            <div class="dropdown-content">
+                <a href="#">객실 안내</a>
+                <a href="#">부대시설</a>
+                <a href="#">스파</a>
+                <a href="#">오시는 길</a>
+            </div>
+        </li>
+        <li>
+            <a href="#">예약</a>
+            <div class="dropdown-content">
+                <a href="#">예약하기</a>
+                <a href="#">예약확인</a>
+            </div>
+        </li>
+        <li>
+            <a href="#">고객센터</a>
+            <div class="dropdown-content">
+                <a href="#">공지사항</a>
+                <a href="#">FAQ</a>
+                <a href="#">문의하기</a>
+            </div>
+        </li>
+        <li><a href="#">스페셜 오퍼</a></li>
+    </ul>
+</nav>
+   
+{{#message}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+    <use xlink:href="#exclamation-triangle-fill"/>
+  </svg>
+  <div>
+    {{message}}
+  </div>
+</div>
+{{/message}}
+
     <div class="hero">
         <div class="hero-content">
             <h1>럭셔리 리조트 & 스파</h1>
