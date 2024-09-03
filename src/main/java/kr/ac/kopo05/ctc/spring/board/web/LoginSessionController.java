@@ -47,7 +47,7 @@ public class LoginSessionController {
         }
 
         if(bindingResult.hasErrors()) {
-            return "login/login";
+            return "redirect:/login";
         }
 		
         // 세션 생성 전 기존 세션 파기

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MK 리조트 & 스파</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #d4af37;
+        }
+        
+        .hero {
+            height: 100vh;
+            background-image: url('https://www.hotelscombined.co.kr/rimg/himg/cc/ee/0b/revato-1507850-13299548-968875.jpg?width=1366&height=768&crop=true');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-content {
+            text-align: center;
+            color: #ffffff;
+            background-color: rgba(10, 10, 10, 0.6);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        .feature {
+            flex: 1;
+            margin: 0 1rem;
+            text-align: center;
+        }
+        .feature img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        /* Message styles */
+        .alert {
+            color: #ffffff; /* Font color for the alert message */
+            background-color: #dc3545; /* Background color for the alert */
+            border-color: #dc3545;
+            padding: 15px;
+            margin: 100px auto 20px; /* Center the alert and add top margin */
+            border-radius: 5px;
+            max-width: 600px; /* Maximum width of the alert */
+            height: 50px; /* Set a fixed height for the alert */
+            display: flex; /* Use flexbox for centering content */
+            align-items: center; /* Vertically center the content */
+            justify-content: center; /* Horizontally center the content */
+            position: relative;
+            text-align: center; /* Center the text */
+        }
+        .alert svg {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+   <style>
+    nav {
+            background-color: rgba(10, 10, 10, 0.8);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 1rem;
+            position: relative;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #d4af37;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ffffff;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(10, 10, 10, 0.9);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+        nav ul li:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            color: #d4af37;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-content a:hover {
+            background-color: #d4af37;
+            color: #0a0a0a;
+        }
+</style>
+
+<nav>
+    <ul>
+        <li>
+            <a href="#">리조트 소개</a>
+            <div class="dropdown-content">
+                <a href="/roomInfo">객실 안내</a>
+                <a href="#">오시는 길</a>
+            </div>
+        </li>
+        <li>
+            <a href="/bookRoom">예약</a>
+            <div class="dropdown-content">
+                <a href="/bookRoom">예약하기</a>
+                <a href="/bookDetail">예약확인</a>
+            </div>
+        </li>
+        <li>
+            <a href="#">고객센터</a>
+            <div class="dropdown-content">
+                <a href="#">공지사항</a>
+                <a href="#">FAQ</a>
+                <a href="#">문의하기</a>
+            </div>
+        </li>
+        <li><a href="/admin/management">관리 페이지</a></li>
+    </ul>
+</nav>
+   
+{{#message}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+    <use xlink:href="#exclamation-triangle-fill"/>
+  </svg>
+  <div>
+    {{message}}
+  </div>
+</div>
+{{/message}}
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>MK 리조트 & 스파</h1>
+            <p>최고의 휴식과 힐링을 경험하세요</p>
+        </div>
+    </div>
+
+    <main>
+        <h2>리조트 특징</h2>
+        <div class="features">
+            <div class="feature">
+                <img src="https://www.lotteresort.com/static/upload/images/20221214/0ec012f8-56e2-4ffd-9362-8ad771423418.jpg" alt="고급 객실">
+                <h3>최고급 객실</h3>
+                <p>편안함과 럭셔리함이 공존하는 객실</p>
+            </div>
+            <div class="feature">
+                <img src="https://www.resom.co.kr/spa/images/img/BathePoo_new.jpg" alt="스파">
+                <h3>힐링 스파</h3>
+                <p>몸과 마음의 휴식을 위한 프리미엄 스파</p>
+            </div>
+            <div class="feature">
+                <img src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2020/04/05/2125/Grand-Hyatt-Seoul-P1577-Treatment-Room-with-Fresh-Mint.jpg/Grand-Hyatt-Seoul-P1577-Treatment-Room-with-Fresh-Mint.4x3.jpg" alt="고급 다이닝">
+                <h3>미식 다이닝</h3>
+                <p>최고의 셰프가 선보이는 특별한 요리</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 상세보기</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #d4af37;
+        }
+        
+        main {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .notice-detail {
+            border: 1px solid #d4af37;
+            border-radius: 10px;
+            padding: 1.5rem;
+            background-color: rgba(10, 10, 10, 0.8);
+        }
+
+        .notice-detail h2 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            border-bottom: 1px solid #d4af37;
+            padding-bottom: 0.5rem;
+        }
+
+        .notice-meta {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #b8860b;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .notice-content {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+
+        .notice-actions {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .notice-actions button {
+            padding: 0.75rem 1.5rem;
+            margin-left: 0.5rem;
+            border: 1px solid #d4af37;
+            background-color: rgba(10, 10, 10, 0.8);
+            color: #d4af37;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .notice-actions button:hover {
+            background-color: #d4af37;
+            color: #0a0a0a;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="notice-detail">
+            <h2>{{boardItem.title}}</h2>
+            <div class="notice-meta">
+                <span>글번호: {{boardItem.boardId}}</span>
+                <span>작성일: {{boardItem.date}}</span>
+                <span>작성자: {{boardItem.userItem.username}}</span>
+            </div>
+            <div class="notice-content">
+                {{boardItem.content}}
+            </div>
+            <div class="notice-actions">
+                <button onclick="window.history.back();">뒤로가기</button>
+                {{#userType}}
+                <button onclick="location.href='/notice/delete/{{boardItem.boardId}}'">삭제</button>
+                <button onclick="location.href='/notice/edit/{{boardItem.boardId}}'">수정</button>
+            	{{/userType}}
+            </div>
+        </div>
+    </main>
+</body>
+</html>

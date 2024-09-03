@@ -18,6 +18,7 @@ import jakarta.servlet.http.HttpSession;
 import kr.ac.kopo05.ctc.spring.board.domain.Reservation;
 import kr.ac.kopo05.ctc.spring.board.domain.RoomItem;
 import kr.ac.kopo05.ctc.spring.board.domain.UserItem;
+import kr.ac.kopo05.ctc.spring.board.repo.BoardItemRepositoryCustomImpl;
 import kr.ac.kopo05.ctc.spring.board.repo.ReservationRepository;
 import kr.ac.kopo05.ctc.spring.board.repo.ReservationRepositoryCustomImpl;
 import kr.ac.kopo05.ctc.spring.board.repo.RoomItemRepository;
@@ -38,11 +39,12 @@ public class ReservationController {
 	@Autowired
 	RoomItemRepository roomItemRepository;
 	
+	
 	@GetMapping("/bookRoom")
-	public String createNewForm(HttpSession session) {
-		
+	public String createNewForm(HttpSession session, Model model) {
 		// 세션에서 사용자 이름 가져오기
 	    String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
 	    
 	    // 만약 세션에 사용자 이름이 없으면(즉, 로그인되지 않은 상태)
 	    if (username == null) {
@@ -56,8 +58,10 @@ public class ReservationController {
     public String checkAvailability(@RequestParam Long roomId,
                                     @RequestParam String checkInDate,
                                     @RequestParam String checkOutDate,
-                                    Model model) {
-		
+                                    Model model, HttpSession session) {
+		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
+	    
 		List<Reservation> resultRA =
 		reservationRepositoryCustomImpl.checkRA(roomId, checkInDate, checkOutDate);
 		
@@ -81,13 +85,14 @@ public class ReservationController {
 	public String booking(HttpSession session, 
 							@RequestParam Long roomId,
             				@RequestParam String checkInDate,
-            				@RequestParam String checkOutDate) {
+            				@RequestParam String checkOutDate, Model model) {
+		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
 		
 		Date today = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		// 세션에서 username 가져와서 조회.
-		String username = (String) session.getAttribute("username");
 		UserItem userItem = userItemRepository.findByUsername(username).orElse(null);
 		
 		RoomItem roomItem = roomItemRepository.findById(roomId).orElse(null);
@@ -103,8 +108,10 @@ public class ReservationController {
 	
 	
 	@PostMapping("/requestCancell") 
-	public String requestCancell(@RequestParam Long reservationId) {
+	public String requestCancell(@RequestParam Long reservationId, Model model, HttpSession session) {
 		
+		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
 		
 		Reservation originR = reservationRepository.findById(reservationId).orElse(null);
 		
@@ -123,9 +130,10 @@ public class ReservationController {
 	
 	@GetMapping("/bookDetail")
 	public String viewBookDetail(Model model, HttpSession session) {
-		
+		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
+	    
 		// 세션에서 사용자 이름 가져오기
-	    String username = (String) session.getAttribute("username");
 	    
 	    // 만약 세션에 사용자 이름이 없으면(즉, 로그인되지 않은 상태)
 	    if (username == null) {
@@ -142,8 +150,8 @@ public class ReservationController {
 	
 	@GetMapping("/admin/management")
 	public String viewBookManagement(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
-	    
-	    String username = (String) session.getAttribute("username");
+		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
 	    
 	    if (username == null) {
 	        return "redirect:/login"; // 로그인 페이지로 리다이렉트
@@ -164,8 +172,9 @@ public class ReservationController {
 	}
 	
 	@PostMapping("/confirmReservation") 
-	public String confirmReservation(@RequestParam Long reservationId) {
-		
+	public String confirmReservation(@RequestParam Long reservationId, Model model, HttpSession session) {
+		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
 		
 		Reservation originR = reservationRepository.findById(reservationId).orElse(null);
 		
@@ -182,8 +191,9 @@ public class ReservationController {
 	}
 
 	@PostMapping("/cancellReservation") 
-	public String cancellReservation(@RequestParam Long reservationId, RedirectAttributes rttr) {
-		
+	public String cancellReservation(@RequestParam Long reservationId, RedirectAttributes rttr, Model model, HttpSession session) {
+		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
 		
 		Reservation originR = reservationRepository.findById(reservationId).orElse(null);
 		

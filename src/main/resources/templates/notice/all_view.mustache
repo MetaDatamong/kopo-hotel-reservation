@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 게시판</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #d4af37;
+        }
+        
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #d4af37;
+        }
+        th {
+            background-color: rgba(10, 10, 10, 0.8);
+        }
+        tr:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+            cursor: pointer;
+        }
+
+        /* Specific width settings */
+        th:nth-child(1), td:nth-child(1) {
+            width: 10%;
+            text-align: center;
+        }
+        th:nth-child(2), td:nth-child(2) {
+            width: 50%;
+        }
+        th:nth-child(3), td:nth-child(3),
+        th:nth-child(4), td:nth-child(4) {
+            width: 20%;
+            text-align: center;
+        }
+
+        /* Button styling */
+        .create-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #d4af37;
+            color: #0a0a0a;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .create-button:hover {
+            background-color: #ffffff;
+            color: #0a0a0a;
+        }
+
+        .button-container {
+            text-align: right;
+        }
+    </style>
+    <script>
+        function goToNotice(boardId) {
+            window.location.href = '/notice/' + boardId;
+        }
+    </script>
+</head>
+<body>
+    <main>
+        <h2>공지사항 게시판</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>글번호</th>
+                    <th>글 제목</th>
+                    <th>날짜</th>
+                    <th>작성자</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#boardItemlist}}
+                <tr onclick="goToNotice({{boardId}})">
+                    <td>{{boardId}}</td>
+                    <td>{{title}}</td>
+                    <td>{{date}}</td>
+                    <td>{{userItem.username}}</td>
+                </tr>
+                {{/boardItemlist}}
+            </tbody>
+        </table>
+
+        {{#userType}}
+        <div class="button-container">
+            <a href="/notice/create" class="create-button">글 작성</a>
+        </div>
+        {{/userType}}
+    </main>
+</body>
+</html>

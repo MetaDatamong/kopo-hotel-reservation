@@ -1,11 +1,20 @@
-<style>
-    nav {
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>헤더</title>
+    <style>
+        nav {
             background-color: rgba(10, 10, 10, 0.8);
             padding: 1rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         nav ul {
             list-style-type: none;
@@ -49,24 +58,74 @@
             background-color: #d4af37;
             color: #0a0a0a;
         }
-</style>
+
+        /* Login and Signup Button Styles */
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-right: 2rem;
+        }
+        .auth-buttons a {
+            text-decoration: none;
+            color: #d4af37;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .auth-buttons a:hover {
+            color: #ffffff;
+        }
+
+        /* Logo Style */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d4af37;
+            text-decoration: none;
+        }
+        .logo:hover {
+            color: #ffffff;
+        }
+
+        /* Message styles */
+        .alert {
+            color: #ffffff; /* Font color for the alert message */
+            background-color: #dc3545; /* Background color for the alert */
+            border-color: #dc3545;
+            padding: 15px;
+            margin: 100px auto 20px; /* Center the alert and add top margin */
+            border-radius: 5px;
+            max-width: 600px; /* Maximum width of the alert */
+            height: 50px; /* Set a fixed height for the alert */
+            display: flex; /* Use flexbox for centering content */
+            align-items: center; /* Vertically center the content */
+            justify-content: center; /* Horizontally center the content */
+            position: relative;
+            text-align: center; /* Center the text */
+        }
+        .alert svg {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        
+    </style>
+</head>
+<body>
 
 <nav>
+    <a href="/index" class="logo">MK</a>
     <ul>
         <li>
             <a href="#">리조트 소개</a>
             <div class="dropdown-content">
-                <a href="#">객실 안내</a>
-                <a href="#">부대시설</a>
-                <a href="#">스파</a>
+                <a href="/roomInfo">객실 안내</a>
                 <a href="#">오시는 길</a>
             </div>
         </li>
         <li>
-            <a href="#">예약</a>
+            <a href="/bookRoom">예약</a>
             <div class="dropdown-content">
-                <a href="#">예약하기</a>
-                <a href="#">예약확인</a>
+                <a href="/bookRoom">예약하기</a>
+                <a href="/bookDetail">예약확인</a>
             </div>
         </li>
         <li>
@@ -77,6 +136,29 @@
                 <a href="#">문의하기</a>
             </div>
         </li>
-        <li><a href="#">스페셜 오퍼</a></li>
+        <li><a href="/admin/management">관리 페이지</a></li>
     </ul>
+    <div class="auth-buttons">
+        {{#isLoggedIn}}
+        <a href="/logout">로그아웃</a>
+        {{/isLoggedIn}}
+        {{^isLoggedIn}}
+        <a href="/login">로그인</a>
+        <a href="/join">회원가입</a>
+        {{/isLoggedIn}}
+    </div>
 </nav>
+
+{{#message}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+    <use xlink:href="#exclamation-triangle-fill"/>
+  </svg>
+  <div>
+    {{message}}
+  </div>
+</div>
+{{/message}}
+
+</body>
+</html>
