@@ -68,10 +68,11 @@
     </style>
 </head>
 <body>
+{{>layouts/header}}
     <div class="container">
         <h1>호텔 예약 조회</h1>
 
-        <form action="/checkAvailability" method="POST">
+        <form action="/mkhotel/checkAvailability" method="POST">
             <label for="roomType">룸 종류</label>
             <select name="roomId" id="roomId">
                 <option value="1">Standard</option>

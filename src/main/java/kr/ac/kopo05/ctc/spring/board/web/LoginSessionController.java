@@ -47,7 +47,8 @@ public class LoginSessionController {
         }
 
         if(bindingResult.hasErrors()) {
-            return "redirect:/login";
+        	model.addAttribute("isWrong",true);
+            return "login/login_form";
         }
 		
         // 세션 생성 전 기존 세션 파기

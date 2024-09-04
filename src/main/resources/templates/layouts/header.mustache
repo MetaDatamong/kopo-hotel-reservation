@@ -62,6 +62,7 @@
         /* Login and Signup Button Styles */
         .auth-buttons {
             display: flex;
+            align-items: center;
             gap: 1rem;
             margin-right: 2rem;
         }
@@ -73,6 +74,13 @@
         }
         .auth-buttons a:hover {
             color: #ffffff;
+        }
+
+        /* Username Greeting */
+        .username-greeting {
+            color: #d4af37;
+            font-weight: bold;
+            margin-right: 1rem;
         }
 
         /* Logo Style */
@@ -112,39 +120,38 @@
 <body>
 
 <nav>
-    <a href="/index" class="logo">MK</a>
+    <a href="/mkhotel/index" class="logo">MK</a>
     <ul>
         <li>
             <a href="#">리조트 소개</a>
             <div class="dropdown-content">
-                <a href="/roomInfo">객실 안내</a>
-                <a href="#">오시는 길</a>
+                <a href="/mkhotel/roomInfo">객실 안내</a>
+                <a href="/mkhotel/wayToMk">오시는 길</a>
             </div>
         </li>
         <li>
-            <a href="/bookRoom">예약</a>
+            <a href="#">예약</a>
             <div class="dropdown-content">
-                <a href="/bookRoom">예약하기</a>
-                <a href="/bookDetail">예약확인</a>
+                <a href="/mkhotel/bookRoom">예약하기</a>
+                <a href="/mkhotel/bookDetail">예약확인</a>
             </div>
         </li>
         <li>
             <a href="#">고객센터</a>
             <div class="dropdown-content">
-                <a href="#">공지사항</a>
-                <a href="#">FAQ</a>
-                <a href="#">문의하기</a>
+                <a href="/mkhotel/notice">공지사항</a>
             </div>
         </li>
-        <li><a href="/admin/management">관리 페이지</a></li>
+        <li><a href="/mkhotel/admin/management">관리 페이지</a></li>
     </ul>
     <div class="auth-buttons">
         {{#isLoggedIn}}
-        <a href="/logout">로그아웃</a>
+        <span class="username-greeting">안녕하세요 {{isLoggedIn}} 님</span>
+        <a href="/mkhotel/logout">로그아웃</a>
         {{/isLoggedIn}}
         {{^isLoggedIn}}
-        <a href="/login">로그인</a>
-        <a href="/join">회원가입</a>
+        <a href="/mkhotel/login">로그인</a>
+        <a href="/mkhotel/join">회원가입</a>
         {{/isLoggedIn}}
     </div>
 </nav>

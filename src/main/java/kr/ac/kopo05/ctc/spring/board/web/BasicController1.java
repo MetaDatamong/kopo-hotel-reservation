@@ -29,4 +29,12 @@ public class BasicController1 {
 	    model.addAttribute("isLoggedIn",username);
 		return "login";
 	}
+	
+	@RequestMapping(value = "/wayToMk")
+	public String wayToMk(HttpSession session, Model model) {
+		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
+		return "direction";
+}
+
 }

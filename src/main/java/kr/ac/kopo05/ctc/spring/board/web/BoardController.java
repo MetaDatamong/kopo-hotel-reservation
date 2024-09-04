@@ -36,9 +36,13 @@ public class BoardController {
 	public String showAllNotice(HttpSession session, Model model) {
 		// userType ADMIN 일때만 userType에 True return
 		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
+	    
 		if (username != null) {
 			UserItem userItem = userItemRepository.findByUsername(username).orElse(null);
 			if (userItem.getType().equals("ADMIN")) {
+				model.addAttribute("userType", "ADMIN");
+			} else {
 				model.addAttribute("userType", "ADMIN");
 			}
 		}
@@ -50,9 +54,10 @@ public class BoardController {
 	}
 
 	@GetMapping("/notice/create")
-	public String getNoticeForm(HttpSession session, RedirectAttributes redirectAttributes) {
+	public String getNoticeForm(HttpSession session, RedirectAttributes redirectAttributes, Model model) {
 
 		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
 
 		if (username == null) {
 			return "redirect:/login"; // 로그인 페이지로 리다이렉트
@@ -70,12 +75,14 @@ public class BoardController {
 	}
 
 	@PostMapping("/notice/create")
-	public String saveNoticeForm(HttpSession session, NoticeForm form) {
+	public String saveNoticeForm(HttpSession session, NoticeForm form, Model model) {
 
+		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
+	    
 		Date today = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-		String username = (String) session.getAttribute("username");
 
 		if (username == null)
 			return "redirect:/login"; // 로그인 페이지로 리다이렉트
@@ -94,6 +101,8 @@ public class BoardController {
 	public String showOneNotice(@PathVariable Long boardId, HttpSession session, Model model) {
 		// userType ADMIN 일때만 userType에 True return
 		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
+	    
 		if (username != null) {
 			UserItem userItem = userItemRepository.findByUsername(username).orElse(null);
 			if (userItem.getType().equals("ADMIN")) {
@@ -108,8 +117,11 @@ public class BoardController {
 	}
 
 	@GetMapping("/notice/delete/{boardId}")
-	public String deleteNotice(@PathVariable Long boardId, RedirectAttributes rttr, Model model) {
+	public String deleteNotice(@PathVariable Long boardId, RedirectAttributes rttr, HttpSession session, Model model) {
 
+		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
+	    
 		BoardItem boardItem = boardItemRepository.findById(boardId).orElse(null);
 
 		if (boardItem != null) {
@@ -125,7 +137,9 @@ public class BoardController {
 
 	@GetMapping("/notice/edit/{boardId}")
 	public String editNotice(@PathVariable Long boardId, HttpSession session, Model model) {
-		
+		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
+	    
 		BoardItem boardItem = boardItemRepositoryCustomImpl.searchByBoardId(boardId);
 
 		model.addAttribute("boardItem", boardItem);
@@ -134,8 +148,10 @@ public class BoardController {
 	}
 	
 	@PostMapping("/notice/edit/{boardId}")
-	public String updateNotice(@PathVariable Long boardId, NoticeForm form) {
-		
+	public String updateNotice(@PathVariable Long boardId, NoticeForm form,HttpSession session, Model model) {
+		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
+	    
 		BoardItem originBoardItem = boardItemRepositoryCustomImpl.searchByBoardId(boardId);
 		
 		BoardItem newBoardItem = new BoardItem(boardId, "notice", form.getTitle(), originBoardItem.getDate(), form.getContent(),
@@ -145,6 +161,6 @@ public class BoardController {
 			boardItemRepository.save(newBoardItem);
 		}
 		
-		return "redirect:/notice" + boardId;
+		return "redirect:/notice/" + boardId;
 	}
 }

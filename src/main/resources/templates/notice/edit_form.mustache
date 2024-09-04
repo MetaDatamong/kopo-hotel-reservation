@@ -17,6 +17,7 @@
             padding: 2rem;
             max-width: 800px;
             margin: 0 auto;
+            margin-top: 5rem;
         }
 
         .notice-detail {
@@ -85,9 +86,10 @@
     </style>
 </head>
 <body>
+{{>layouts/header}}
     <main>
         <div class="notice-detail">
-            <form action="/notice/edit/{{boardItem.boardId}}" method="POST">
+            <form action="/mkhotel/notice/edit/{{boardItem.boardId}}" method="POST">
                 <h2>
                     <input type="text" name="title" value="{{boardItem.title}}" required>
                 </h2>

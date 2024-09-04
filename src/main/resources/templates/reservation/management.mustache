@@ -91,17 +91,7 @@
     </style>
 </head>
 <body>
-
-{{#message}}
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-    <use xlink:href="#exclamation-triangle-fill"/>
-  </svg>
-  <div>
-    {{message}}
-  </div>
-</div>
-{{/message}}
+{{>layouts/header}}
 
     <div class="container">
         <h1>예약 내역</h1>
@@ -133,20 +123,20 @@
                 <p>{{userItem.username}}</p>
                 <p>{{userItem.name}}</p>
 
-                <label>요청 사항:</label>
-                <p>{{request}}</p>
+                 <!--<label>요청 사항:</label>
+                <p>{{request}}</p>-->
                 
                 <label>예약 상태:</label>
                 <p>{{stateMessage}}</p>
                 
                 <!-- 버튼 그룹 -->
                 <div class="button-group">
-                    <form action="/confirmReservation" method="POST">
+                    <form action="/mkhotel/confirmReservation" method="POST">
                         <input type="hidden" name="reservationId" value="{{reservationId}}">
                         <button type="submit">예약 확정 하기</button>
                     </form>
                     
-                    <form action="/cancellReservation" method="POST">
+                    <form action="/mkhotel/cancellReservation" method="POST">
                         <input type="hidden" name="reservationId" value="{{reservationId}}">
                         <button type="submit">예약 취소 하기</button>
                     </form>

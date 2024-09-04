@@ -17,6 +17,7 @@
             padding: 2rem;
             max-width: 800px;
             margin: 0 auto;
+            margin-top: 5rem;
         }
 
         .notice-detail {
@@ -73,6 +74,7 @@
     </style>
 </head>
 <body>
+{{>layouts/header}}
     <main>
         <div class="notice-detail">
             <h2>{{boardItem.title}}</h2>
@@ -87,8 +89,8 @@
             <div class="notice-actions">
                 <button onclick="window.history.back();">뒤로가기</button>
                 {{#userType}}
-                <button onclick="location.href='/notice/delete/{{boardItem.boardId}}'">삭제</button>
-                <button onclick="location.href='/notice/edit/{{boardItem.boardId}}'">수정</button>
+                <button onclick="location.href='/mkhotel/notice/delete/{{boardItem.boardId}}'">삭제</button>
+                <button onclick="location.href='/mkhotel/notice/edit/{{boardItem.boardId}}'">수정</button>
             	{{/userType}}
             </div>
         </div>

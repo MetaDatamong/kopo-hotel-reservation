@@ -17,6 +17,7 @@
             padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
+            margin-top: 5rem; /* 추가된 여백 */
         }
 
         table {
@@ -75,11 +76,12 @@
     </style>
     <script>
         function goToNotice(boardId) {
-            window.location.href = '/notice/' + boardId;
+            window.location.href = '/mkhotel/notice/' + boardId;
         }
     </script>
 </head>
 <body>
+{{>layouts/header}}
     <main>
         <h2>공지사항 게시판</h2>
         <table>
@@ -105,7 +107,7 @@
 
         {{#userType}}
         <div class="button-container">
-            <a href="/notice/create" class="create-button">글 작성</a>
+            <a href="/mkhotel/notice/create" class="create-button">글 작성</a>
         </div>
         {{/userType}}
     </main>

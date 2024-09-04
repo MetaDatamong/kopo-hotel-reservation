@@ -205,4 +205,13 @@ public class ReservationController {
 		return "redirect:/admin/management";
 	}
 
+	@GetMapping("/checkReservation")
+	public String getReservationTable(Model model, HttpSession session) {
+		String username = (String) session.getAttribute("username");
+	    model.addAttribute("isLoggedIn",username);
+		
+	    
+		return "reservation_table";
+	}
+	
 }

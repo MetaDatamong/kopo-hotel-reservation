@@ -63,6 +63,7 @@
     </style>
 </head>
 <body>
+{{>layouts/header}}
     <div class="container">
         <h1>예약 내역</h1>
 
@@ -93,14 +94,14 @@
                 <p>{{userItem.username}}</p>
                 <p>{{userItem.name}}</p>
 
-                <label>요청 사항:</label>
-                <p>{{request}}</p>
+                <!--<label>요청 사항:</label>
+                <p>{{request}}</p>-->
                 
                 <label>예약 상태:</label>
                 <p>{{stateMessage}}</p>
                 
                 <!-- 예약 취소 버튼 -->
-                <form action="/requestCancell" method="POST">
+                <form action="/mkhotel/requestCancell" method="POST">
                     <input type="hidden" name="reservationId" value="{{reservationId}}">
                     <button type="submit">예약 취소 요청</button>
                 </form>

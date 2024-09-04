@@ -9,4 +9,6 @@ public interface ReservationRepositoryCustom {
 	List<Reservation> searchByUserId(Long userId);
 	
 	List<Reservation> getAll();
+
+	List<Reservation> getReservationWR();
 }
